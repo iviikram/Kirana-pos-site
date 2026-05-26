@@ -1803,6 +1803,23 @@
       color: #2E7D32;
       font-weight: 700;
     }
+
+    /* FAQ — light mode fix */
+    html.light .faq-card {
+      background: rgba(255,255,255,0.75);
+      border-color: rgba(0,0,0,0.1);
+    }
+    html.light .faq-card:hover  { border-color: rgba(97,69,214,0.35); }
+    html.light .faq-card.open   { background: rgba(97,69,214,0.07); border-color: rgba(97,69,214,0.3); }
+    html.light .faq-q           { color: #1A1A1A; }
+    html.light .faq-icon        { color: #6145D6; }
+    html.light .faq-a           { color: rgba(0,0,0,0.58); }
+
+    /* Cure cards — light mode fix */
+    html.light .cure-card       { background: rgba(56,142,60,0.07); border-color: rgba(56,142,60,0.22); }
+    html.light .cure-card h3    { color: #1A1A1A; }
+    html.light .cure-card p     { color: #5A6055; }
+    html.light .cure-label      { color: #2E7D32; }
   </style>
 </head>
 <body>
