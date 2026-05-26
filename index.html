@@ -1598,6 +1598,185 @@
       background: linear-gradient(135deg, #E65100, #388E3C);
     }
 
+    /* ── WING CAROUSEL ── */
+    .hero-mockup {
+      position: relative;
+      width: 210px;
+      aspect-ratio: 9/19;
+      margin: 44px auto 0;
+      flex-shrink: 0;
+    }
+    .hero-mockup img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 22px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.55);
+      border: 3px solid rgba(255,255,255,0.12);
+      opacity: 0;
+      animation: wingCarousel 18s cubic-bezier(0.25,1,0.5,1) infinite;
+    }
+    .hero-mockup img:nth-child(1) { animation-delay:   0s; }
+    .hero-mockup img:nth-child(2) { animation-delay:  -3s; }
+    .hero-mockup img:nth-child(3) { animation-delay:  -6s; }
+    .hero-mockup img:nth-child(4) { animation-delay:  -9s; }
+    .hero-mockup img:nth-child(5) { animation-delay: -12s; }
+    .hero-mockup img:nth-child(6) { animation-delay: -15s; }
+    @keyframes wingCarousel {
+      0%,   11%   { transform: translateX(0) scale(1) rotate(0deg);               opacity: 1;   z-index:10; filter:blur(0); }
+      16.6%,27.6% { transform: translateX(-55%) translateY(15px) scale(.85) rotate(-8deg); opacity:.7; z-index:5;  filter:blur(1px); }
+      33.3%,44.3% { transform: translateX(-20%) translateY(30px) scale(.7)  rotate(0);    opacity: 0;  z-index:1;  filter:blur(2px); }
+      50%,  61%   { transform: translateX(0)    translateY(30px) scale(.7)  rotate(0);    opacity: 0;  z-index:1;  filter:blur(2px); }
+      66.6%,77.6% { transform: translateX(20%)  translateY(30px) scale(.7)  rotate(0);    opacity: 0;  z-index:1;  filter:blur(2px); }
+      83.3%,94.3% { transform: translateX(55%)  translateY(15px) scale(.85) rotate(8deg);  opacity:.7; z-index:5;  filter:blur(1px); }
+      100%        { transform: translateX(0) scale(1) rotate(0deg);               opacity: 1;   z-index:10; filter:blur(0); }
+    }
+
+    /* ── ACTION PATH PILL ── */
+    .action-path {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.11);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 20px;
+    }
+    .ap-arrow { color: var(--gold); }
+    .ap-step  { color: rgba(255,255,255,0.88); }
+
+    /* ── APP SHOWCASE ── */
+    .showcase { padding: 90px 24px; text-align: center; }
+    .showcase-scroll {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 20px 0 24px;
+      scroll-snap-type: x mandatory;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .showcase-scroll::-webkit-scrollbar { display: none; }
+    .sc-item {
+      flex: 0 0 160px;
+      scroll-snap-align: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.25,1.5,0.5,1);
+    }
+    .sc-item:hover { transform: translateY(-18px) scale(1.05) rotate(1deg); z-index:10; }
+    .sc-item img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+      border: 3px solid rgba(255,255,255,0.09);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .sc-item:hover img {
+      border-color: var(--gold);
+      box-shadow: 0 22px 55px rgba(255,213,79,0.22);
+    }
+    .sc-item h4 {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+      transition: color .3s;
+    }
+    .sc-item:hover h4 { color: var(--gold); }
+    @media (min-width: 768px) {
+      .showcase-scroll { justify-content: center; flex-wrap: wrap; overflow-x: visible; }
+    }
+
+    /* ── CURE CARDS (problem solution) ── */
+    .cure-label {
+      display: inline-block;
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 44px 0 14px;
+    }
+    .cure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+    .cure-card {
+      background: rgba(129,199,132,0.07);
+      border: 1px solid rgba(129,199,132,0.22);
+      border-radius: 18px;
+      padding: 30px 24px;
+      text-align: left;
+      transition: border-color .25s, transform .25s;
+    }
+    .cure-card:hover { border-color: rgba(129,199,132,0.45); transform: translateY(-4px); }
+    .cure-icon { font-size: 1.9rem; display: block; margin-bottom: 16px; }
+    .cure-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 9px; color: rgba(255,255,255,0.9); }
+    .cure-card p  { font-size: .855rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+    /* ── FAQ ── */
+    .faq { padding: 90px 24px; max-width: 860px; margin: 0 auto; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
+    .faq-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .faq-card:hover  { border-color: rgba(97,69,214,0.35); }
+    .faq-card.open   { border-color: rgba(97,69,214,0.35); background: rgba(97,69,214,0.07); }
+    .faq-q {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+    .faq-icon { color: var(--lavender); font-size: 1.1rem; transition: transform .25s; }
+    .faq-card.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      font-size: .88rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.75;
+      margin-top: 14px;
+      display: none;
+    }
+    .faq-card.open .faq-a { display: block; }
+
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 56px;
+      height: 56px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      z-index: 998;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .wa-float:hover { transform: scale(1.12); box-shadow: 0 6px 28px rgba(37,211,102,0.65); }
+
     /* How it works — subtle green wash */
     html.light .how {
       background: rgba(56,142,60,0.05);
@@ -1630,6 +1809,11 @@
 
 
 <canvas id="bg"></canvas>
+
+<!-- WA FLOAT -->
+<a class="wa-float" href="https://wa.me/918851011927?text=Hi!%20I%20want%20to%20know%20more%20about%20KiranaPOS." target="_blank" rel="noopener" title="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <div class="content">
 
@@ -1682,6 +1866,14 @@
       <span class="grad" data-en="Now Digital." data-hi="अब डिजिटल।" data-mr="आता डिजिटल." data-gu="હવે ડિજિટલ.">Now Digital.</span>
     </h1>
 
+    <div class="action-path">
+      <span class="ap-step" data-en="Scan product" data-hi="प्रोडक्ट स्कैन">Scan product</span>
+      <span class="ap-arrow">›</span>
+      <span class="ap-step" data-en="Bill in seconds" data-hi="सेकंड में बिल">Bill in seconds</span>
+      <span class="ap-arrow">›</span>
+      <span class="ap-step" data-en="Track profit instantly" data-hi="मुनाफा देखें">Track profit instantly</span>
+    </div>
+
     <div class="hero-sub-en" id="hero-sub">
       दुकान को बनाएं स्मार्ट — बिक्री, स्टॉक, उधार सब एक जगह
     </div>
@@ -1721,6 +1913,15 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#fff" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span data-en="Share on WhatsApp" data-hi="दोस्त को भेजें">Share on WhatsApp</span>
       </button>
+    </div>
+    <!-- WING CAROUSEL -->
+    <div class="hero-mockup">
+      <img src="sc1_dashboard.jpeg" alt="KiranaPOS Dashboard">
+      <img src="sc2_billing.jpeg"   alt="Fast Billing">
+      <img src="sc3_checkout.jpeg"  alt="Checkout">
+      <img src="sc4_inventory.jpeg" alt="Inventory">
+      <img src="sc5_ai.jpeg"        alt="Dukaan AI">
+      <img src="sc6_health.jpeg"    alt="Shop Health">
     </div>
   </section>
 
@@ -1836,6 +2037,30 @@
         </p>
       </div>
     </div>
+    <div class="cure-label" data-en="✅ The KiranaPOS Way" data-hi="✅ KiranaPOS का तरीका">✅ The KiranaPOS Way</div>
+    <div class="cure-grid">
+      <div class="cure-card">
+        <span class="cure-icon">💬</span>
+        <h3 data-en="Udhar never forgotten" data-hi="उधार कभी नहीं भूलेगा">Udhar never forgotten</h3>
+        <p data-en="Every customer's credit is logged digitally. Send a WhatsApp reminder in one tap — no awkward conversations, no lost khata." data-hi="हर ग्राहक का उधार डिजिटल दर्ज। एक टैप में WhatsApp रिमाइंडर — न झिझक, न खोया खाता।">Every customer's credit is logged digitally. Send a WhatsApp reminder in one tap — no awkward conversations, no lost khata.</p>
+      </div>
+      <div class="cure-card">
+        <span class="cure-icon">🔔</span>
+        <h3 data-en="Stock alerts before it's empty" data-hi="खत्म होने से पहले अलर्ट">Stock alerts before it's empty</h3>
+        <p data-en="Set reorder levels once. KiranaPOS alerts you before atta, tel, dal runs out — so you never lose a customer to an empty shelf." data-hi="एक बार रीऑर्डर लेवल सेट करें। आटा, तेल, दाल खत्म होने से पहले अलर्ट — ग्राहक कभी खाली हाथ नहीं लौटेगा।">Set reorder levels once. KiranaPOS alerts you before atta, tel, dal runs out — so you never lose a customer to an empty shelf.</p>
+      </div>
+      <div class="cure-card">
+        <span class="cure-icon">📊</span>
+        <h3 data-en="Real-time profit reports" data-hi="असली मुनाफे की रिपोर्ट">Real-time profit reports</h3>
+        <p data-en="See today's sales, top products, dead stock and net profit — any time. Know exactly where your money is going." data-hi="आज की बिक्री, बेस्ट प्रोडक्ट, बेकार स्टॉक और नेट मुनाफा — कभी भी देखें। पैसा कहाँ जा रहा है, पूरी जानकारी।">See today's sales, top products, dead stock and net profit — any time. Know exactly where your money is going.</p>
+      </div>
+      <div class="cure-card">
+        <span class="cure-icon">⚡</span>
+        <h3 data-en="Bill in seconds, error-free" data-hi="सेकंड में बिल, कोई गलती नहीं">Bill in seconds, error-free</h3>
+        <p data-en="Scan the barcode, tap checkout, done. Cash or UPI — both accepted. No calculator, no manual math, no undercharging." data-hi="बारकोड स्कैन, checkout टैप, बिल तैयार। नकद या UPI — दोनों। कोई calculator नहीं, कोई गलत हिसाब नहीं।">Scan the barcode, tap checkout, done. Cash or UPI — both accepted. No calculator, no manual math, no undercharging.</p>
+      </div>
+    </div>
+
     <div class="problem-answer"
          data-en="✦ &nbsp;KiranaPOS replaces the khaata-bahi — smarter, faster, in Hindi, without internet."
          data-hi="✦ &nbsp;KiranaPOS खाता-बही की जगह लेता है — स्मार्ट, तेज़, हिंदी में, बिना इंटरनेट।"
@@ -2021,6 +2246,38 @@
     </div>
   </section>
 
+  <!-- APP SHOWCASE -->
+  <section class="showcase">
+    <div class="section-pill" data-en="Real App. Real Screens." data-hi="असली App. असली Screens.">Real App. Real Screens.</div>
+    <h2 class="section-h" data-en="See exactly what you're getting" data-hi="देखें — क्या मिलेगा आपको">See exactly what you're getting</h2>
+    <div class="showcase-scroll">
+      <div class="sc-item">
+        <img src="sc1_dashboard.jpeg" alt="Dashboard">
+        <h4 data-en="Dashboard" data-hi="डैशबोर्ड">Dashboard</h4>
+      </div>
+      <div class="sc-item">
+        <img src="sc2_billing.jpeg" alt="Fast Billing">
+        <h4 data-en="Fast Billing" data-hi="तेज़ बिलिंग">Fast Billing</h4>
+      </div>
+      <div class="sc-item">
+        <img src="sc3_checkout.jpeg" alt="Checkout">
+        <h4 data-en="Checkout" data-hi="चेकआउट">Checkout</h4>
+      </div>
+      <div class="sc-item">
+        <img src="sc4_inventory.jpeg" alt="Inventory">
+        <h4 data-en="Inventory" data-hi="इन्वेंटरी">Inventory</h4>
+      </div>
+      <div class="sc-item">
+        <img src="sc5_ai.jpeg" alt="Dukaan AI">
+        <h4 data-en="Dukaan AI" data-hi="दुकान AI">Dukaan AI</h4>
+      </div>
+      <div class="sc-item">
+        <img src="sc6_health.jpeg" alt="Shop Health">
+        <h4 data-en="Shop Health" data-hi="दुकान की सेहत">Shop Health</h4>
+      </div>
+    </div>
+  </section>
+
   <!-- WHY NOW -->
   <section id="why-now" style="padding:72px 24px;max-width:960px;margin:0 auto;">
     <div class="section-pill" data-en="What You're Missing" data-hi="आप क्या खो रहे हैं" data-mr="तुम्ही काय गमावत आहात" data-gu="તમે શું ગુમાવો છો">What You're Missing</div>
@@ -2112,6 +2369,71 @@
            data-gu="માત્ર 25 founding spots — પૂર્ણ access, કાયમ મફત.">
         Only 25 founding spots — full access, free forever.
       </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL (moved above pricing) -->
+  <section class="testimonial">
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text"
+         data-en="My father ran this dukaan with a khaata for 30 years. I switched to KiranaPOS 4 months ago. Diwali was our best season ever — two counters running, no confusion, every rupee tracked. Papa bhi surprised ho gaye."
+         data-hi="मेरे पिताजी ने 30 साल खाते से यह दुकान चलाई। मैंने 4 महीने पहले KiranaPOS अपनाया। इस दिवाली पर सबसे बढ़िया सीज़न रहा — दो काउंटर चले, कोई गड़बड़ी नहीं, हर रुपया दर्ज। पापा भी हैरान हो गए।">
+        My father ran this dukaan with a khaata for 30 years. I switched to KiranaPOS 4 months ago. Diwali was our best season ever — two counters running, no confusion, every rupee tracked. Papa bhi surprised ho gaye.
+      </p>
+      <div class="testimonial-attr">
+        — <span data-en="Vikram Singh, Kirana Store Owner (2nd generation)" data-hi="विक्रम सिंह, किराना दुकानदार (दूसरी पीढ़ी)">Vikram Singh, Kirana Store Owner (2nd generation)</span>
+        &nbsp;·&nbsp;<span>Lucknow, UP</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="section-pill" data-en="Common Questions" data-hi="अक्सर पूछे जाने वाले सवाल">Common Questions</div>
+    <h2 class="section-h" data-en="Everything you want to know" data-hi="आपके सभी सवालों के जवाब">Everything you want to know</h2>
+    <div class="faq-list">
+
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span data-en="What if I lose my phone — will my data be gone?" data-hi="फोन खो जाए तो क्या डेटा चला जाएगा?">What if I lose my phone — will my data be gone?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a" data-en="Not at all. All your sales, udhar, stock and customer data is backed up to the cloud in real time. Just download the app on any new Android phone, log in with your number — your entire shop is restored instantly." data-hi="बिलकुल नहीं। आपकी सभी बिक्री, उधार, स्टॉक और ग्राहक का डेटा रियल-टाइम में cloud में सेव रहता है। नए Android फोन पर app डाउनलोड करें, अपने नंबर से login करें — पूरी दुकान तुरंत वापस।">Not at all. All your sales, udhar, stock and customer data is backed up to the cloud in real time. Just download the app on any new Android phone, log in with your number — your entire shop is restored instantly.</div>
+      </div>
+
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span data-en="What if the internet stops in my shop?" data-hi="दुकान में net चला जाए तो?">What if the internet stops in my shop?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a" data-en="KiranaPOS is built offline-first. Billing, stock updates, udhar entries — everything keeps working without internet. The moment your Jio or Airtel comes back, all data syncs automatically. Your shop never stops." data-hi="KiranaPOS ऑफलाइन-फर्स्ट बना है। बिलिंग, स्टॉक, उधार — सब बिना net के चलता है। Jio या Airtel आते ही सब कुछ अपने आप sync हो जाता है। दुकान कभी नहीं रुकती।">KiranaPOS is built offline-first. Billing, stock updates, udhar entries — everything keeps working without internet. The moment your Jio or Airtel comes back, all data syncs automatically. Your shop never stops.</div>
+      </div>
+
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span data-en="Can my staff use it on their own phones?" data-hi="क्या मेरा स्टाफ अपने फोन से use कर सकता है?">Can my staff use it on their own phones?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a" data-en="Yes. Any staff member can log in with their own PIN on any Android phone. They see the same live shop data and can bill customers instantly — same stock, same prices. Admin controls (reports, settings, udhar) stay locked behind your PIN." data-hi="हाँ। कोई भी स्टाफ अपने Android फोन पर PIN से login कर सकता है। एक ही दुकान का डेटा, एक ही स्टॉक। Admin कंट्रोल — रिपोर्ट, सेटिंग, उधार — आपके PIN से सुरक्षित।">Yes. Any staff member can log in with their own PIN on any Android phone. They see the same live shop data and can bill customers instantly — same stock, same prices. Admin controls (reports, settings, udhar) stay locked behind your PIN.</div>
+      </div>
+
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span data-en="Is it really free? What's the catch?" data-hi="क्या यह सच में मुफ़्त है? कोई छुपा खर्च तो नहीं?">Is it really free? What's the catch?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a" data-en="The first 25 Founding Members get 100% free lifetime access — no subscription, no hidden fees, ever. In return, we ask for honest feedback to help us build better. After 25 spots are filled, a ₹99/month plan will launch." data-hi="पहले 25 Founding Members को 100% मुफ़्त जीवनभर एक्सेस मिलती है — कोई subscription नहीं, कोई छुपा खर्च नहीं। बदले में हम honest feedback मांगते हैं ताकि app बेहतर बना सकें। 25 स्पॉट भरने के बाद ₹99/महीना प्लान शुरू होगा।">The first 25 Founding Members get 100% free lifetime access — no subscription, no hidden fees, ever. In return, we ask for honest feedback to help us build better. After 25 spots are filled, a ₹99/month plan will launch.</div>
+      </div>
+
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span data-en="Why is this not on the Play Store?" data-hi="यह Play Store पर क्यों नहीं है?">Why is this not on the Play Store?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a" data-en="We are in the Founding Member phase — verifying each user personally so we can give real support. Play Store listing is coming soon. For now, install directly from the APK — it takes under a minute and is completely safe." data-hi="हम अभी Founding Member phase में हैं — हर user को personally verify करते हैं ताकि असली सहायता दे सकें। Play Store listing जल्द आ रहा है। अभी APK से direct install करें — एक मिनट से कम, पूरी तरह सुरक्षित।">We are in the Founding Member phase — verifying each user personally so we can give real support. Play Store listing is coming soon. For now, install directly from the APK — it takes under a minute and is completely safe.</div>
+      </div>
+
     </div>
   </section>
 
@@ -2289,23 +2611,6 @@
       </div>
     </div>
   </div>
-
-  <!-- TESTIMONIAL -->
-  <section class="testimonial">
-    <div class="testimonial-card">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text"
-         data-en="My father ran this dukaan with a khaata for 30 years. I switched to KiranaPOS 4 months ago. Diwali was our best season ever — two counters running, no confusion, every rupee tracked. Papa bhi surprised ho gaye."
-         data-hi="मेरे पिताजी ने 30 साल खाते से यह दुकान चलाई। मैंने 4 महीने पहले KiranaPOS अपनाया। इस दिवाली पर सबसे बढ़िया सीज़न रहा — दो काउंटर चले, कोई गड़बड़ी नहीं, हर रुपया दर्ज। पापा भी हैरान हो गए।">
-        My father ran this dukaan with a khaata for 30 years. I switched to KiranaPOS 4 months ago. Diwali was our best season ever — two counters running, no confusion, every rupee tracked. Papa bhi surprised ho gaye.
-      </p>
-      <div class="testimonial-attr">
-        — <span data-en="Vikram Singh, Kirana Store Owner (2nd generation)" data-hi="विक्रम सिंह, किराना दुकानदार (दूसरी पीढ़ी)">Vikram Singh, Kirana Store Owner (2nd generation)</span>
-        &nbsp;·&nbsp;
-        <span>Lucknow, UP</span>
-      </div>
-    </div>
-  </section>
 
   <!-- HOW IT WORKS -->
   <section class="how" id="how">
@@ -2650,6 +2955,12 @@
 var LANG = localStorage.getItem('kpos-lang') || 'en';
 
 var LANG_LABELS = { en: 'English', hi: 'हिंदी', mr: 'मराठी', gu: 'ગુજરાતી' };
+
+function toggleFaq(card) {
+  var isOpen = card.classList.contains('open');
+  document.querySelectorAll('.faq-card.open').forEach(function(c){ c.classList.remove('open'); });
+  if (!isOpen) card.classList.add('open');
+}
 
 function toggleLangMenu(e) {
   e.stopPropagation();
