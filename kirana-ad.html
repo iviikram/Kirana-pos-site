@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KiranaPOS — Ad Preview</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0d0d0d;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-family: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Stage 9:16 ── */
+.stage {
+  width: 360px;
+  height: 640px;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 0 80px rgba(230,81,0,0.22), 0 0 0 1px rgba(255,255,255,0.07);
+}
+
+/* ── Story dots ── */
+.story-bar {
+  position: absolute;
+  top: 14px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 5px; align-items: center;
+  z-index: 50;
+}
+.sb-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  transition: width 0.35s ease, border-radius 0.35s ease, background 0.35s ease;
+  flex-shrink: 0;
+}
+.sb-dot.active { width: 20px; border-radius: 3px; background: rgba(255,255,255,0.95); }
+.sb-dot.done   { background: rgba(255,255,255,0.65); }
+
+/* ── Scene base ── */
+.scene {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.35s ease;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 44px 24px 32px;
+  text-align: center; overflow: hidden;
+}
+.scene.active { opacity: 1; }
+
+/* ── Animation utility ── */
+.scene .au { opacity: 0; }
+.scene.active .au-fade  { animation: auFade  0.55s ease both; }
+.scene.active .au-up    { animation: auUp    0.55s ease both; }
+.scene.active .au-left  { animation: auLeft  0.45s ease both; }
+.scene.active .au-right { animation: auRight 0.45s ease both; }
+.scene.active .au-pop   { animation: auPop   0.55s cubic-bezier(.34,1.56,.64,1) both; }
+
+.d1 { animation-delay: 0.30s !important; }
+.d2 { animation-delay: 0.55s !important; }
+.d3 { animation-delay: 0.75s !important; }
+.d4 { animation-delay: 1.00s !important; }
+.d5 { animation-delay: 1.20s !important; }
+.d6 { animation-delay: 1.45s !important; }
+.d7 { animation-delay: 1.70s !important; }
+.d8 { animation-delay: 1.95s !important; }
+.d9 { animation-delay: 2.20s !important; }
+
+@keyframes auFade  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes auUp    { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes auLeft  { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: none; } }
+@keyframes auRight { from { opacity: 0; transform: translateX(18px); }  to { opacity: 1; transform: none; } }
+@keyframes auPop   { from { opacity: 0; transform: scale(0.55); } to { opacity: 1; transform: scale(1); } }
+
+/* ══ S1: Intro ══ */
+#s1 {
+  background: radial-gradient(ellipse at 50% 44%, #2D1505 0%, #090301 100%);
+  justify-content: center;
+}
+.s1-glow {
+  position: absolute; width: 340px; height: 340px;
+  background: radial-gradient(ellipse, rgba(230,81,0,0.17) 0%, transparent 70%);
+  top: 44%; left: 50%; transform: translate(-50%, -50%);
+  animation: glowPulse 3s ease-in-out infinite; pointer-events: none;
+}
+.s1-logo {
+  font-size: 40px; font-weight: 900; letter-spacing: -1px;
+  background: linear-gradient(135deg, #FF8C42 0%, #FFD54F 45%, #81C784 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 18px;
+}
+.s1-spark { display: inline-block; animation: sparkSpin 3s ease-in-out infinite; }
+.s1-tagline {
+  font-size: 30px; font-weight: 800; color: #fff;
+  line-height: 1.3; margin-bottom: 14px;
+}
+.s1-sub { font-size: 13px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; }
+.s1-dots {
+  position: absolute; bottom: 56px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 10px;
+}
+.s1-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,138,66,0.5);
+  animation: dotFloat 2.2s ease-in-out infinite;
+}
+.s1-dot:nth-child(2) { animation-delay: 0.45s; background: rgba(255,213,79,0.5); }
+.s1-dot:nth-child(3) { animation-delay: 0.9s;  background: rgba(129,199,132,0.5); }
+
+@keyframes glowPulse {
+  0%,100% { transform: translate(-50%,-50%) scale(1);    opacity: 0.8; }
+  50%      { transform: translate(-50%,-50%) scale(1.18); opacity: 1;   }
+}
+@keyframes sparkSpin {
+  0%,100% { transform: rotate(0deg) scale(1); }
+  25%     { transform: rotate(72deg) scale(1.4); }
+  50%     { transform: rotate(144deg) scale(1); }
+  75%     { transform: rotate(216deg) scale(1.25); }
+}
+@keyframes dotFloat {
+  0%,100% { transform: translateY(0);    opacity: 0.5; }
+  50%      { transform: translateY(-7px); opacity: 1;   }
+}
+
+/* ══ S2: Problem ══ */
+#s2 { background: linear-gradient(155deg, #FFFBF5 0%, #FFF0DC 100%); }
+.s2-eyebrow {
+  font-size: 12px; font-weight: 700; color: #E65100;
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+}
+.s2-head {
+  font-size: 23px; font-weight: 800; color: #1A1A1A;
+  line-height: 1.3; margin-bottom: 26px;
+}
+.pain-row {
+  width: 100%;
+  background: rgba(230,81,0,0.05);
+  border: 1px solid rgba(230,81,0,0.15);
+  border-radius: 12px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 11px;
+  margin-bottom: 10px; text-align: left;
+}
+.pr-icon { font-size: 20px; flex-shrink: 0; }
+.pr-text { font-size: 13.5px; color: #4A3020; font-weight: 500; flex: 1; }
+.pr-x { font-size: 16px; color: #C62828; font-weight: 900; flex-shrink: 0; }
+
+/* ══ S3: Fast Billing ══ */
+#s3 {
+  background: linear-gradient(155deg, #FFFBF5 0%, #FFFDE7 100%);
+  justify-content: flex-start; padding-top: 56px;
+}
+.s3-tag {
+  font-size: 12px; font-weight: 700; color: #E65100;
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;
+}
+.s3-head { font-size: 22px; font-weight: 800; color: #1A1A1A; margin-bottom: 18px; }
+.bill-card {
+  width: 100%; background: #fff;
+  border-radius: 16px; padding: 16px 16px 12px;
+  box-shadow: 0 4px 24px rgba(140,90,30,0.10), 0 1px 4px rgba(0,0,0,0.06);
+}
+.bill-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(160,110,50,0.18);
+  text-align: left;
+}
+.bill-item:last-of-type { border-bottom: none; }
+.bi-name { font-size: 13.5px; font-weight: 600; color: #1A1A1A; }
+.bi-qty  { font-size: 11px; color: #7A6050; margin-top: 1px; }
+.bi-price { font-size: 14px; font-weight: 700; color: #1A1A1A; }
+.bill-divider { border: none; border-top: 2px solid #E65100; margin: 9px 0 8px; }
+.bill-total-row { display: flex; justify-content: space-between; align-items: center; }
+.bt-label { font-size: 14px; font-weight: 700; color: #5A4030; }
+.bt-val   { font-size: 21px; font-weight: 900; color: #E65100; }
+.bill-wa  { font-size: 12px; color: #388E3C; font-weight: 600; margin-top: 14px; text-align: center; }
+
+/* ══ S4: Udhar ══ */
+#s4 {
+  background: linear-gradient(155deg, #FFFBF5 0%, #FFF3E0 100%);
+  justify-content: flex-start; padding-top: 54px;
+}
+.s4-head { font-size: 22px; font-weight: 800; color: #1A1A1A; margin-bottom: 4px; }
+.s4-sub  { font-size: 13px; color: #7A6050; margin-bottom: 18px; }
+.cc-row {
+  width: 100%; background: #fff;
+  border-radius: 14px; padding: 11px 14px;
+  box-shadow: 0 3px 14px rgba(140,90,30,0.08);
+  border-left: 4px solid #E65100;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
+}
+.cc-row.cc-fresh { border-left-color: #388E3C; }
+.cc-av {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, #E65100, #BF360C);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 15px; font-weight: 800; flex-shrink: 0;
+}
+.cc-av.cc-av-g { background: linear-gradient(135deg, #388E3C, #2E7D32); }
+.cc-name { font-size: 13.5px; font-weight: 700; color: #1A1A1A; }
+.cc-badge {
+  font-size: 10px; font-weight: 600;
+  padding: 2px 7px; border-radius: 10px;
+  display: inline-block; margin-top: 2px;
+}
+.badge-over  { background: #FFEBEE; color: #C62828; }
+.badge-aging { background: #FFF8E1; color: #F57F17; }
+.badge-fresh { background: #E8F5E9; color: #2E7D32; }
+.cc-amt { font-size: 17px; font-weight: 900; color: #C62828; margin-left: auto; white-space: nowrap; }
+.cc-amt.cc-amt-g { color: #388E3C; }
+.s4-wa { font-size: 13px; font-weight: 600; color: #388E3C; margin-top: 6px; }
+
+/* ══ S5: Offline ══ */
+#s5 { background: linear-gradient(155deg, #E8F5E9 0%, #F1F8E9 100%); }
+.s5-icon {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: linear-gradient(135deg, #388E3C, #2E7D32);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 44px;
+  box-shadow: 0 10px 40px rgba(56,142,60,0.28);
+  margin-bottom: 24px;
+}
+.s5-head { font-size: 27px; font-weight: 800; color: #1A1A1A; line-height: 1.3; margin-bottom: 10px; }
+.s5-sub  { font-size: 14px; color: #4A6040; line-height: 1.55; margin-bottom: 22px; }
+.chip-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.chip {
+  background: #fff; border: 1px solid rgba(56,142,60,0.28);
+  color: #2E7D32; font-size: 12px; font-weight: 600;
+  padding: 6px 13px; border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(56,142,60,0.10);
+}
+
+/* ══ S6: Shop Ledger ══ */
+#s6 {
+  background: linear-gradient(155deg, #FFFBF5 0%, #FFF3E0 100%);
+  justify-content: flex-start; padding-top: 54px;
+}
+.s6-head { font-size: 22px; font-weight: 800; color: #1A1A1A; margin-bottom: 4px; }
+.s6-sub  { font-size: 13px; color: #7A6050; margin-bottom: 18px; }
+.ledger-card {
+  width: 100%; background: #fff;
+  border-radius: 16px; padding: 18px;
+  box-shadow: 0 4px 24px rgba(140,90,30,0.10);
+}
+.l-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px dashed rgba(160,110,50,0.15);
+}
+.l-row:last-child { border-bottom: none; }
+.l-label { font-size: 13.5px; color: #7A6050; font-weight: 500; }
+.l-val   { font-size: 19px; font-weight: 900; }
+.l-val.dark  { color: #1A1A1A; }
+.l-val.green { color: #388E3C; }
+.l-val.red   { color: #C62828; }
+.l-up { font-size: 11px; background: #E8F5E9; color: #2E7D32; font-weight: 700; padding: 2px 7px; border-radius: 10px; margin-left: 5px; vertical-align: middle; }
+.s6-cta { font-size: 14px; font-weight: 700; color: #E65100; margin-top: 20px; }
+
+/* ══ S7: CTA ══ */
+#s7 {
+  background: linear-gradient(155deg, #BF360C 0%, #E65100 55%, #FF8A50 100%);
+}
+.s7-logo {
+  font-size: 36px; font-weight: 900; letter-spacing: -0.5px;
+  color: #fff; margin-bottom: 8px;
+}
+.s7-spark { display: inline-block; animation: sparkSpin 3s ease-in-out infinite; }
+.s7-tagline {
+  font-size: 15px; color: rgba(255,255,255,0.82);
+  line-height: 1.5; margin-bottom: 36px;
+}
+.s7-btn {
+  background: #fff; color: #BF360C;
+  font-size: 17px; font-weight: 800;
+  padding: 15px 34px; border-radius: 50px;
+  box-shadow: 0 10px 36px rgba(0,0,0,0.22);
+  margin-bottom: 18px; cursor: pointer;
+}
+.s7-btn.pulse { animation: btnPulse 1.8s ease-in-out infinite; }
+.s7-free { font-size: 13px; color: rgba(255,255,255,0.88); font-weight: 600; margin-bottom: 6px; }
+.s7-url  { font-size: 11px; color: rgba(255,255,255,0.52); }
+
+@keyframes btnPulse {
+  0%,100% { transform: scale(1);    box-shadow: 0 10px 36px rgba(0,0,0,0.22); }
+  50%      { transform: scale(1.06); box-shadow: 0 14px 48px rgba(0,0,0,0.32); }
+}
+
+/* ══ S8: Promotions ══ */
+#s8 {
+  background: linear-gradient(155deg, #FFF8F0 0%, #FFF3E0 100%);
+  justify-content: flex-start; padding-top: 38px; padding-bottom: 20px;
+}
+.s8-head { font-size: 20px; font-weight: 800; color: #1A1A1A; margin-bottom: 2px; }
+.s8-sub  { font-size: 12px; color: #7A6050; margin-bottom: 12px; }
+.promo-card {
+  width: 100%; background: #fff;
+  border-radius: 12px; padding: 9px 12px;
+  box-shadow: 0 3px 12px rgba(140,90,30,0.08);
+  border-left: 4px solid #E65100;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 8px; text-align: left;
+}
+.promo-badge {
+  font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 7px; display: inline-block;
+}
+.promo-badge.flash { background: #FFF3E0; color: #E65100; }
+.promo-badge.bogo  { background: #E8F5E9; color: #2E7D32; }
+.promo-badge.wa    { background: #E1F5FE; color: #0277BD; }
+.promo-title  { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-top: 3px; }
+.promo-detail { font-size: 11px; color: #7A6050; margin-top: 1px; }
+.promo-val { font-size: 17px; font-weight: 900; color: #E65100; margin-left: auto; white-space: nowrap; }
+.promo-val.gv { color: #388E3C; }
+.s8-wa { font-size: 12px; font-weight: 600; color: #388E3C; margin-top: 6px; }
+
+/* ══ S9: Staff ══ */
+#s9 {
+  background: linear-gradient(155deg, #F3F0FF 0%, #EDE7F6 100%);
+  justify-content: flex-start; padding-top: 38px; padding-bottom: 20px;
+}
+.s9-head { font-size: 20px; font-weight: 800; color: #1A1A1A; margin-bottom: 2px; }
+.s9-sub  { font-size: 12px; color: #6050A0; margin-bottom: 12px; }
+.staff-card {
+  width: 100%; background: #fff;
+  border-radius: 12px; padding: 9px 12px;
+  box-shadow: 0 3px 12px rgba(100,80,200,0.08);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 8px;
+}
+.staff-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 14px; font-weight: 800; flex-shrink: 0;
+}
+.av-owner   { background: linear-gradient(135deg, #7C4DFF, #512DA8); }
+.av-cashier { background: linear-gradient(135deg, #E65100, #BF360C); }
+.av-helper  { background: linear-gradient(135deg, #388E3C, #2E7D32); }
+.staff-name { font-size: 13px; font-weight: 700; color: #1A1A1A; }
+.staff-role {
+  font-size: 10px; font-weight: 600; padding: 2px 7px;
+  border-radius: 10px; display: inline-block; margin-top: 2px;
+}
+.role-owner   { background: #EDE7F6; color: #512DA8; }
+.role-cashier { background: #FFF3E0; color: #E65100; }
+.role-helper  { background: #E8F5E9; color: #2E7D32; }
+.staff-access { font-size: 11px; color: #9090B0; margin-left: auto; white-space: nowrap; }
+.s9-pin { font-size: 12px; font-weight: 600; color: #7C4DFF; margin-top: 6px; }
+
+/* ══ S10: Vendors ══ */
+#s10 {
+  background: linear-gradient(155deg, #F1F8F4 0%, #E8F5EC 100%);
+  justify-content: flex-start; padding-top: 38px; padding-bottom: 20px;
+}
+.s10-head { font-size: 20px; font-weight: 800; color: #1A1A1A; margin-bottom: 2px; }
+.s10-sub  { font-size: 12px; color: #4A7050; margin-bottom: 12px; }
+.vendor-card {
+  width: 100%; background: #fff;
+  border-radius: 12px; padding: 9px 12px;
+  box-shadow: 0 3px 12px rgba(56,142,60,0.08);
+  border-left: 4px solid #388E3C;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 8px;
+}
+.ven-av {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: linear-gradient(135deg, #388E3C, #2E7D32);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 14px; font-weight: 800; flex-shrink: 0;
+}
+.ven-name { font-size: 13px; font-weight: 700; color: #1A1A1A; }
+.ven-date { font-size: 11px; color: #7A9070; margin-top: 1px; }
+.ven-amt  { font-size: 16px; font-weight: 900; color: #2E7D32; margin-left: auto; }
+.s10-due  { font-size: 12px; font-weight: 600; color: #E65100; margin-top: 6px; }
+
+/* ── Controls ── */
+.controls {
+  display: flex; gap: 10px; align-items: center;
+}
+.ctrl-btn {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.75);
+  font-size: 13px; padding: 8px 18px;
+  border-radius: 20px; cursor: pointer;
+  transition: background 0.2s;
+}
+.ctrl-btn:hover { background: rgba(255,255,255,0.17); }
+.ctrl-hint { font-size: 11px; color: rgba(255,255,255,0.28); text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <!-- Story dots: 10 scenes -->
+  <div class="story-bar" id="story-bar">
+    <div class="sb-dot" id="dot-0"></div>
+    <div class="sb-dot" id="dot-1"></div>
+    <div class="sb-dot" id="dot-2"></div>
+    <div class="sb-dot" id="dot-3"></div>
+    <div class="sb-dot" id="dot-4"></div>
+    <div class="sb-dot" id="dot-5"></div>
+    <div class="sb-dot" id="dot-6"></div>
+    <div class="sb-dot" id="dot-7"></div>
+    <div class="sb-dot" id="dot-8"></div>
+    <div class="sb-dot" id="dot-9"></div>
+  </div>
+
+  <!-- S1: Intro -->
+  <div class="scene" id="s1">
+    <div class="s1-glow"></div>
+    <div class="s1-logo au au-pop d1"><span class="s1-spark">✦</span> KiranaPOS</div>
+    <div class="s1-tagline au au-up d3">दुकान का हिसाब<br>अब Digital</div>
+    <div class="s1-sub au au-fade d5">Fast Billing &nbsp;•&nbsp; Udhar Ledger &nbsp;•&nbsp; Offline</div>
+    <div class="s1-dots">
+      <div class="s1-dot"></div>
+      <div class="s1-dot"></div>
+      <div class="s1-dot"></div>
+    </div>
+  </div>
+
+  <!-- S2: Problem -->
+  <div class="scene" id="s2">
+    <div class="s2-eyebrow au au-fade d1">पहले ऐसा था...</div>
+    <div class="s2-head au au-up d2">कागज़ में हिसाब?<br>बहुत हो गया!</div>
+    <div style="width:100%">
+      <div class="pain-row au au-left d3">
+        <span class="pr-icon">📒</span>
+        <span class="pr-text">कागज़ खो जाता है, हिसाब गड़बड़</span>
+        <span class="pr-x">✕</span>
+      </div>
+      <div class="pain-row au au-left d5">
+        <span class="pr-icon">😤</span>
+        <span class="pr-text">उधार कितना है — याद नहीं रहता</span>
+        <span class="pr-x">✕</span>
+      </div>
+      <div class="pain-row au au-left d7">
+        <span class="pr-icon">📊</span>
+        <span class="pr-text">आज कितना कमाया? पता नहीं...</span>
+        <span class="pr-x">✕</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: Fast Billing -->
+  <div class="scene" id="s3">
+    <div class="s3-tag au au-fade d1">⚡ Fast Billing</div>
+    <div class="s3-head au au-up d2">30 सेकंड में बिल तैयार</div>
+    <div class="bill-card au au-up d3" style="width:100%">
+      <div class="bill-item au au-right d4">
+        <div><div class="bi-name">आलू</div><div class="bi-qty">5 kg</div></div>
+        <div class="bi-price">₹ 120</div>
+      </div>
+      <div class="bill-item au au-right d5">
+        <div><div class="bi-name">सूरजमुखी तेल</div><div class="bi-qty">2 L</div></div>
+        <div class="bi-price">₹ 280</div>
+      </div>
+      <div class="bill-item au au-right d6">
+        <div><div class="bi-name">साबुन (Lux)</div><div class="bi-qty">3 pcs</div></div>
+        <div class="bi-price">₹ 90</div>
+      </div>
+      <div class="bill-item au au-right d7">
+        <div><div class="bi-name">चीनी</div><div class="bi-qty">1 kg</div></div>
+        <div class="bi-price">₹ 48</div>
+      </div>
+      <hr class="bill-divider">
+      <div class="bill-total-row au au-up d8">
+        <span class="bt-label">कुल राशि</span>
+        <span class="bt-val">₹ 538</span>
+      </div>
+    </div>
+    <div class="bill-wa au au-fade d9">📲 WhatsApp पर बिल शेयर करें</div>
+  </div>
+
+  <!-- S4: Udhar -->
+  <div class="scene" id="s4">
+    <div class="s4-head au au-fade d1">📋 उधार का हिसाब</div>
+    <div class="s4-sub au au-fade d2">हर ग्राहक का बकाया — एक नज़र में</div>
+    <div style="width:100%">
+      <div class="cc-row au au-right d3">
+        <div class="cc-av">र</div>
+        <div>
+          <div class="cc-name">रमेश जी</div>
+          <span class="cc-badge badge-over">15 दिन पुराना</span>
+        </div>
+        <div class="cc-amt">₹ 2,100</div>
+      </div>
+      <div class="cc-row au au-right d5">
+        <div class="cc-av">स</div>
+        <div>
+          <div class="cc-name">सुनीता देवी</div>
+          <span class="cc-badge badge-aging">6 दिन पुराना</span>
+        </div>
+        <div class="cc-amt">₹ 680</div>
+      </div>
+      <div class="cc-row cc-fresh au au-right d7">
+        <div class="cc-av cc-av-g">म</div>
+        <div>
+          <div class="cc-name">मोहन लाल</div>
+          <span class="cc-badge badge-fresh">आज का</span>
+        </div>
+        <div class="cc-amt cc-amt-g">₹ 340</div>
+      </div>
+    </div>
+    <div class="s4-wa au au-up d9">📲 WhatsApp से reminder भेजें →</div>
+  </div>
+
+  <!-- S5: Offline -->
+  <div class="scene" id="s5">
+    <div class="s5-icon au au-pop d2">📴</div>
+    <div class="s5-head au au-up d4">Internet नहीं?<br>कोई बात नहीं!</div>
+    <div class="s5-sub au au-up d6">बिना network के बिल बनाएं, बेचें —<br>data safe रहेगा, auto sync होगा</div>
+    <div class="chip-row au au-up d8">
+      <div class="chip">✅ Offline billing</div>
+      <div class="chip">✅ Auto sync</div>
+      <div class="chip">✅ Data secure</div>
+    </div>
+  </div>
+
+  <!-- S6: Shop Ledger -->
+  <div class="scene" id="s6">
+    <div class="s6-head au au-fade d1">📊 दुकान बहीखाता</div>
+    <div class="s6-sub au au-fade d2">P&amp;L, Cash, Receivables — सब एक जगह</div>
+    <div class="ledger-card au au-up d3" style="width:100%">
+      <div class="l-row au au-right d4">
+        <span class="l-label">आज की बिक्री</span>
+        <span class="l-val dark">₹ 8,420</span>
+      </div>
+      <div class="l-row au au-right d6">
+        <span class="l-label">आज का मुनाफा</span>
+        <div>
+          <span class="l-val green">₹ 1,860</span>
+          <span class="l-up">↑ 12%</span>
+        </div>
+      </div>
+      <div class="l-row au au-right d8">
+        <span class="l-label">बकाया उधार</span>
+        <span class="l-val red">₹ 12,350</span>
+      </div>
+    </div>
+    <div class="s6-cta au au-fade d9">सब एक नज़र में देखें ✦</div>
+  </div>
+
+  <!-- S7: CTA -->
+  <div class="scene" id="s7">
+    <div class="s7-logo au au-pop d2">
+      <span class="s7-spark">✦</span> KiranaPOS
+    </div>
+    <div class="s7-tagline au au-up d4">भारत की हर दुकान के लिए<br>बनाया गया</div>
+    <div class="s7-btn au au-pop d6" id="s7btn">📲 अभी Download करें</div>
+    <div class="s7-free au au-fade d8">बिल्कुल मुफ्त &nbsp;•&nbsp; हिंदी में</div>
+    <div class="s7-url au au-fade d9">iviikram.github.io/Kirana-pos</div>
+  </div>
+
+  <!-- S8: Promotions -->
+  <div class="scene" id="s8">
+    <div class="s8-head au au-fade d1">🎁 Promotions</div>
+    <div class="s8-sub au au-fade d2">ग्राहकों को offer दें, बिक्री बढ़ाएं</div>
+    <div style="width:100%">
+      <div class="promo-card au au-right d3">
+        <div>
+          <span class="promo-badge flash">⚡ Flash Sale</span>
+          <div class="promo-title">आलू — आज सिर्फ</div>
+          <div class="promo-detail">₹40/kg &nbsp;→&nbsp; ₹32/kg</div>
+        </div>
+        <div class="promo-val">-20%</div>
+      </div>
+      <div class="promo-card au au-right d5" style="border-left-color:#388E3C">
+        <div>
+          <span class="promo-badge bogo">🎁 Buy 2 Get 1</span>
+          <div class="promo-title">साबुन — 3 खरीदो, 1 free</div>
+          <div class="promo-detail">Lux, Dove, Lifebuoy</div>
+        </div>
+        <div class="promo-val gv">FREE</div>
+      </div>
+      <div class="promo-card au au-right d7" style="border-left-color:#0277BD">
+        <div>
+          <span class="promo-badge wa">📢 Broadcast</span>
+          <div class="promo-title">WhatsApp offer भेजें</div>
+          <div class="promo-detail">127 customers को एक साथ</div>
+        </div>
+        <div class="promo-val" style="color:#0277BD; font-size:22px">→</div>
+      </div>
+    </div>
+    <div class="s8-wa au au-fade d9">📲 Offer बनाएं और WhatsApp पर भेजें</div>
+  </div>
+
+  <!-- S9: Staff -->
+  <div class="scene" id="s9">
+    <div class="s9-head au au-fade d1">👥 Staff Management</div>
+    <div class="s9-sub au au-fade d2">अपनी team manage करें — role-based access</div>
+    <div style="width:100%">
+      <div class="staff-card au au-right d3">
+        <div class="staff-av av-owner">र</div>
+        <div>
+          <div class="staff-name">रमेश (Owner)</div>
+          <span class="staff-role role-owner">🔑 Full Access</span>
+        </div>
+        <div class="staff-access">Full access</div>
+      </div>
+      <div class="staff-card au au-right d5">
+        <div class="staff-av av-cashier">प</div>
+        <div>
+          <div class="staff-name">प्रिया (Cashier)</div>
+          <span class="staff-role role-cashier">🧾 Billing only</span>
+        </div>
+        <div class="staff-access">Billing only</div>
+      </div>
+      <div class="staff-card au au-right d7">
+        <div class="staff-av av-helper">म</div>
+        <div>
+          <div class="staff-name">मोहन (Helper)</div>
+          <span class="staff-role role-helper">📦 Stock only</span>
+        </div>
+        <div class="staff-access">Stock only</div>
+      </div>
+    </div>
+    <div class="s9-pin au au-up d9">🔐 PIN से login — हर member अलग</div>
+  </div>
+
+  <!-- S10: Vendors -->
+  <div class="scene" id="s10">
+    <div class="s10-head au au-fade d1">🏪 Vendor Management</div>
+    <div class="s10-sub au au-fade d2">सामान कहाँ से आया — पूरा track करें</div>
+    <div style="width:100%">
+      <div class="vendor-card au au-right d3">
+        <div class="ven-av">श</div>
+        <div>
+          <div class="ven-name">शर्मा ट्रेडर्स</div>
+          <div class="ven-date">2 दिन पहले</div>
+        </div>
+        <div class="ven-amt">₹ 12,400</div>
+      </div>
+      <div class="vendor-card au au-right d5">
+        <div class="ven-av">ग</div>
+        <div>
+          <div class="ven-name">गुप्ता होलसेल</div>
+          <div class="ven-date">5 दिन पहले</div>
+        </div>
+        <div class="ven-amt">₹ 8,200</div>
+      </div>
+      <div class="vendor-card au au-right d7">
+        <div class="ven-av">म</div>
+        <div>
+          <div class="ven-name">लोकल मंडी</div>
+          <div class="ven-date">आज</div>
+        </div>
+        <div class="ven-amt">₹ 3,600</div>
+      </div>
+    </div>
+    <div class="s10-due au au-up d9">⚠️ बकाया भुगतान: ₹ 4,200</div>
+  </div>
+</div>
+
+<!-- Controls (press H to hide for recording) -->
+<div class="controls" id="controls">
+  <button class="ctrl-btn" onclick="go(-1)">◀ Prev</button>
+  <button class="ctrl-btn" onclick="restart()">↺ Restart</button>
+  <button class="ctrl-btn" onclick="go(1)">Next ▶</button>
+</div>
+<div class="ctrl-hint" id="ctrl-hint">Press <strong style="color:rgba(255,255,255,0.5)">H</strong> to hide controls before screen recording</div>
+
+<script>
+const SCENES = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
+const DURS   = [3800, 3500, 4800, 4200, 3500, 4200, 5500, 4200, 4200, 4500]; // ms per scene
+let cur = 0, timer = null;
+
+function activate(idx) {
+  // Switch scenes
+  SCENES.forEach((id, i) => {
+    document.getElementById(id).classList.toggle('active', i === idx);
+  });
+
+  // Story dots
+  for (let i = 0; i < SCENES.length; i++) {
+    const dot = document.getElementById('dot-' + i);
+    dot.className = 'sb-dot' + (i < idx ? ' done' : i === idx ? ' active' : '');
+  }
+
+  // CTA button pulse on scene 7
+  const btn = document.getElementById('s7btn');
+  btn.classList.remove('pulse');
+  if (idx === 6) {
+    setTimeout(() => btn.classList.add('pulse'), 1400);
+  }
+
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    cur = (cur + 1) % SCENES.length;
+    activate(cur);
+  }, DURS[idx]);
+}
+
+function go(dir) {
+  clearTimeout(timer);
+  cur = ((cur + dir) + SCENES.length) % SCENES.length;
+  activate(cur);
+}
+function restart() {
+  clearTimeout(timer);
+  cur = 0;
+  activate(0);
+}
+
+// H key: hide/show controls for screen recording
+document.addEventListener('keydown', e => {
+  if (e.key.toLowerCase() !== 'h') return;
+  const hidden = document.getElementById('controls').style.display === 'none';
+  document.getElementById('controls').style.display  = hidden ? '' : 'none';
+  document.getElementById('ctrl-hint').style.display = hidden ? '' : 'none';
+});
+
+activate(0);
+</script>
+</body>
+</html>
