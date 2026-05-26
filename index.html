@@ -3702,27 +3702,14 @@ function submitDemoForm(e) {
 }
 
 function shareOnWhatsApp() {
-  var msg =
-    'नमस्ते! 🙏\n\n' +
-    '*KiranaPOS* — भारत के किराना दुकानदारों का digital हिसाब-किताब।\n\n' +
-    'अभी भी कागज़ पर हिसाब? उधार याद नहीं रहता? स्टॉक खत्म तब पता चलता है जब ग्राहक सामने खड़ा हो? — यह app इन सब झंझटों को खत्म करता है।\n\n' +
-    '*क्या-क्या मिलता है:*\n' +
-    '💰 ₹0 setup cost — आपका smartphone ही बन जाता है POS machine, कोई अलग device नहीं\n' +
-    '⚡ 30 सेकंड में बिल — WhatsApp पर भेजो, printer की ज़रूरत नहीं\n' +
-    '📝 उधार खाता — हर ग्राहक का हिसाब, fresh/aging/overdue alerts\n' +
-    '📊 दुकान बहीखाता — कैश, मुनाफा और बकाया एक नज़र में\n' +
-    '🎁 Promotions — WhatsApp पर offer भेजो, ग्राहक खिंचे चले आएं\n' +
-    '🔔 स्टॉक alerts — खत्म होने से पहले पता चले, barcode scan support\n' +
-    '🤝 Vendor management — सामान कहाँ से आया, purchases और बकाया track करें\n' +
-    '👥 Staff management — हर कर्मचारी का अलग PIN, role-based access\n' +
-    '📶 बिना Internet भी काम करे — data safe, network आते ही auto sync\n\n' +
-    'हिंदी, मराठी, गुजराती और English — अपनी भाषा में चलाएं।\n\n' +
-    'बड़े मार्ट इस तरह के software पर करोड़ों खर्च करते हैं। आपकी दुकान को यह सब *मुफ़्त* मिल रहा है।\n\n' +
-    '🌐 *Website:* https://iviikram.github.io/Kirana-pos/\n' +
-    '🎬 *App Preview:* https://iviikram.github.io/Kirana-pos/kirana-ad.html\n\n' +
-    '🎁 पहले 25 Founding Members को *lifetime free access!*\n' +
-    '👉 अभी Register करें: https://iviikram.github.io/Kirana-pos/';
-  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+  var msgs = {
+    hi: 'नमस्ते! 🙏\n\nमैंने KiranaPOS के बारे में देखा और यह मेरी दुकान के लिए काफी उपयोगी लगा।\nमैं Founding Member बनकर अपनी दुकान को digital तरीके से manage करना चाहता हूँ।\n\n👤 नाम:\n🏪 दुकान का नाम:\n📍 शहर:\n👥 Staff की संख्या:\n📦 क्या बेचते हैं:\n💰 मासिक बिक्री (लगभग):\n\nअगर मेरी दुकान KiranaPOS के लिए suitable हो, तो मैं जल्दी शुरू करना चाहूँगा।\nकृपया बताइए, बात करने के लिए सही समय क्या रहेगा?',
+    en: 'Hello! 🙏\n\nI came across KiranaPOS and it seems very useful for my shop.\nI would like to become a Founding Member and manage my shop digitally.\n\n👤 Name:\n🏪 Shop Name:\n📍 City:\n👥 Number of Staff:\n📦 What do you sell:\n💰 Monthly Sale (approx):\n\nIf my shop is suitable for KiranaPOS, I would like to get started soon.\nPlease let me know a good time to talk.',
+    mr: 'नमस्कार! 🙏\n\nमी KiranaPOS बद्दल पाहिले आणि ते माझ्या दुकानासाठी खूप उपयुक्त वाटले.\nमला Founding Member होऊन माझे दुकान digital पद्धतीने manage करायचे आहे.\n\n👤 नाव:\n🏪 दुकानाचे नाव:\n📍 शहर:\n👥 Staff ची संख्या:\n📦 काय विकता:\n💰 मासिक विक्री (अंदाजे):\n\nमाझे दुकान KiranaPOS साठी suitable असेल तर मला लवकर सुरुवात करायची आहे.\nकृपया बोलण्यासाठी योग्य वेळ सांगा.',
+    gu: 'નમસ્તે! 🙏\n\nમેં KiranaPOS વિશે જોયું અને તે મારી દુકાન માટે ખૂબ ઉપયોગી લાગ્યું.\nહું Founding Member બનીને મારી દુકાન digital રીતે manage કરવા ઇચ્છું છું.\n\n👤 નામ:\n🏪 દુકાનનું નામ:\n📍 શહેર:\n👥 Staff ની સંખ્યા:\n📦 શું વેચો છો:\n💰 માસિક વેચાણ (અંદાજે):\n\nજો મારી દુકાન KiranaPOS માટે suitable હોય તો હું જલ્દી શરૂ કરવા ઇચ્છું છું.\nકૃપા કરીને વાત કરવા માટેનો સારો સમય જણાવો.'
+  };
+  var msg = msgs[LANG] || msgs['en'];
+  window.open('https://wa.me/918851011927?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
 
