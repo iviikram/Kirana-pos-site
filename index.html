@@ -1834,7 +1834,7 @@
 <canvas id="bg"></canvas>
 
 <!-- WA FLOAT -->
-<a class="wa-float" href="#" onclick="openWaFloat();return false;" title="Chat on WhatsApp">
+<a class="wa-float" href="#" onclick="openDemoModal();return false;" title="Chat on WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
@@ -1930,7 +1930,7 @@
               data-en="🎟️ Get Lifetime Free Access" data-hi="🎟️ जीवनभर मुफ़्त एक्सेस पाएं" data-mr="🎟️ जीवनभर मोफत ॲक्सेस मिळवा" data-gu="🎟️ આજીવન મફત ઍક્સેસ મેળવો">🎟️ Get Lifetime Free Access</button>
       <a href="#access" class="btn-ghost"
          data-en="I Have a Code →" data-hi="मेरे पास कोड है →" data-mr="माझ्याकडे कोड आहे →" data-gu="મારી પાસે કોડ છે →">I Have a Code →</a>
-      <button onclick="shareOnWhatsApp()" class="btn-ghost"
+      <button onclick="openDemoModal()" class="btn-ghost"
               style="border:none;cursor:pointer;background:#25d366;color:#fff;border:2px solid #25d366;display:inline-flex;align-items:center;gap:8px;font-weight:700;box-shadow:0 4px 16px rgba(37,211,102,0.35);animation:wa-pulse 2.2s ease-in-out infinite;"
               data-en="Share on WhatsApp" data-hi="दोस्त को भेजें" data-mr="मित्राला शेअर करा" data-gu="મિત્રને શેર કરો">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#fff" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -3707,40 +3707,6 @@ function submitDemoForm(e) {
   applyLang(LANG);
 }
 
-function shareOnWhatsApp() {
-  var msg =
-    'नमस्ते! 🙏\n\n' +
-    '*KiranaPOS* — भारत के किराना दुकानदारों का digital हिसाब-किताब।\n\n' +
-    'अभी भी कागज़ पर हिसाब? उधार याद नहीं रहता? स्टॉक खत्म तब पता चलता है जब ग्राहक सामने खड़ा हो? — यह app इन सब झंझटों को खत्म करता है।\n\n' +
-    '*क्या-क्या मिलता है:*\n' +
-    '💰 ₹0 setup cost — आपका smartphone ही बन जाता है POS machine, कोई अलग device नहीं\n' +
-    '⚡ 30 सेकंड में बिल — WhatsApp पर भेजो, printer की ज़रूरत नहीं\n' +
-    '📝 उधार खाता — हर ग्राहक का हिसाब, fresh/aging/overdue alerts\n' +
-    '📊 दुकान बहीखाता — कैश, मुनाफा और बकाया एक नज़र में\n' +
-    '🎁 Promotions — WhatsApp पर offer भेजो, ग्राहक खिंचे चले आएं\n' +
-    '🔔 स्टॉक alerts — खत्म होने से पहले पता चले, barcode scan support\n' +
-    '🤝 Vendor management — सामान कहाँ से आया, purchases और बकाया track करें\n' +
-    '👥 Staff management — हर कर्मचारी का अलग PIN, role-based access\n' +
-    '📶 बिना Internet भी काम करे — data safe, network आते ही auto sync\n\n' +
-    'हिंदी, मराठी, गुजराती और English — अपनी भाषा में चलाएं।\n\n' +
-    'बड़े मार्ट इस तरह के software पर करोड़ों खर्च करते हैं। आपकी दुकान को यह सब *मुफ़्त* मिल रहा है।\n\n' +
-    '🌐 *Website:* https://iviikram.github.io/Kirana-pos-site/\n' +
-    '🎬 *App Preview:* https://iviikram.github.io/Kirana-pos-site/kirana-ad.html\n\n' +
-    '🎁 पहले 25 Founding Members को *lifetime free access!*\n' +
-    '👉 अभी Register करें: https://iviikram.github.io/Kirana-pos-site/';
-  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
-}
-
-function openWaFloat() {
-  var msgs = {
-    hi: 'नमस्ते! 🙏\n\nमैंने KiranaPOS के बारे में देखा और यह मेरी दुकान के लिए काफी उपयोगी लगा।\nमैं Founding Member बनकर अपनी दुकान को digital तरीके से manage करना चाहता हूँ।\n\n👤 नाम:\n🏪 दुकान का नाम:\n📍 शहर:\n👥 Staff की संख्या:\n📦 क्या बेचते हैं:\n💰 मासिक बिक्री (लगभग):\n\nअगर मेरी दुकान KiranaPOS के लिए suitable हो, तो मैं जल्दी शुरू करना चाहूँगा।\nकृपया बताइए, बात करने के लिए सही समय क्या रहेगा?',
-    en: 'Hello! 🙏\n\nI came across KiranaPOS and it seems very useful for my shop.\nI would like to become a Founding Member and manage my shop digitally.\n\n👤 Name:\n🏪 Shop Name:\n📍 City:\n👥 Number of Staff:\n📦 What do you sell:\n💰 Monthly Sale (approx):\n\nIf my shop is suitable for KiranaPOS, I would like to get started soon.\nPlease let me know a good time to talk.',
-    mr: 'नमस्कार! 🙏\n\nमी KiranaPOS बद्दल पाहिले आणि ते माझ्या दुकानासाठी खूप उपयुक्त वाटले.\nमला Founding Member होऊन माझे दुकान digital पद्धतीने manage करायचे आहे.\n\n👤 नाव:\n🏪 दुकानाचे नाव:\n📍 शहर:\n👥 Staff ची संख्या:\n📦 काय विकता:\n💰 मासिक विक्री (अंदाजे):\n\nमाझे दुकान KiranaPOS साठी suitable असेल तर मला लवकर सुरुवात करायची आहे.\nकृपया बोलण्यासाठी योग्य वेळ सांगा.',
-    gu: 'નમસ્તે! 🙏\n\nમેં KiranaPOS વિશે જોયું અને તે મારી દુકાન માટે ખૂબ ઉપયોગી લાગ્યું.\nહું Founding Member બનીને મારી દુકાન digital રીતે manage કરવા ઇચ્છું છું.\n\n👤 નામ:\n🏪 દુકાનનું નામ:\n📍 શહેર:\n👥 Staff ની સંખ્યા:\n📦 શું વેચો છો:\n💰 માસિક વેચાણ (અંદાજે):\n\nજો મારી દુકાન KiranaPOS માટે suitable હોય તો હું જલ્દી શરૂ કરવા ઇચ્છું છું.\nકૃપા કરીને વાત કરવા માટેનો સારો સમય જણાવો.'
-  };
-  var msg = msgs[LANG] || msgs['en'];
-  window.open('https://wa.me/918929899199?text=' + encodeURIComponent(msg), '_blank');
-}
 </script>
 
 </body>
