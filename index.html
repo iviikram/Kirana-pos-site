@@ -1983,6 +1983,41 @@
        (#FFD54F→#FF9933, pale yellow) was ~1.5:1 on the white pricing cards. */
     html.light .stat-n        { background-image: linear-gradient(135deg, #C2410C, #2E7D32); }
     html.light .pricing-price { background-image: linear-gradient(135deg, #A33C00, #C2410C); }
+
+    /* 2. TEXT SIZE (both themes): two thirds of the paragraph text was under
+          15px (mostly 13.5–14.1px), which is tiring for older shopkeepers.
+          Body text is now 16px; small notes ~14px. Tags/pills stay small. */
+    .card p, .pain-card p, .cure-card p, .step p, .rush-p,
+    .pricing-feats li, .program-card li, .program-card li span { font-size: 1rem; }
+    .faq-q span, .hero-offer { font-size: 1rem; }
+    /* inline-styled paragraphs (font-size:0.88rem in the markup) need !important */
+    #why-now div > p[style], p[data-en^="This is a two-way commitment"] { font-size: 1rem !important; }
+    .rb-text { font-size: 0.92rem; }
+    .access-sub, .pricing-footnote, .register-note, .pricing-note,
+    .rush-note, .pricing-addon-example { font-size: 0.86rem; }
+    /* The features grid had minmax(310px,1fr): wider than a 320px phone's
+       usable width (320 − 2×20px padding = 280), so the cards stuck out ~10px
+       and the page could be dragged sideways. min(310px,100%) lets the column
+       shrink on tiny screens and is identical everywhere else. */
+    .grid { grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr)); }
+
+    /* Tablets: between 700px and ~900px the full desktop header (logo + 5 links
+       + language + theme + Download) is ~860px wide, so at 768px the Download
+       button was pushed off-screen. Use the compact header up to 900px too.
+       (Starts just above 700px so this block, which sits later in the file,
+       cannot override the tighter phone rules in the ≤700px / ≤360px blocks.
+       700.02px, not 701px: the real viewport width can be fractional, and
+       (min-width:701px) left a gap at ~700.4px where NO rule applied.) */
+    @media (min-width: 700.02px) and (max-width: 900px) {
+      nav { padding: 12px 20px; }
+      .nav-links { gap: 10px; }
+      .nav-links a:not(.btn-nav):not(#lang-toggle) { display: none; }
+      .lang-trigger { padding: 9px 10px; min-height: 40px; }
+      .lang-trigger .lang-globe, .lang-trigger #lang-label, .lang-trigger .lang-arrow { display: none; }
+      .lang-trigger .lang-short { display: inline; font-weight: 700; }
+      #theme-toggle { min-width: 40px; min-height: 40px; }
+      .btn-nav { padding: 12px 16px; white-space: nowrap; }
+    }
   </style>
   <script data-goatcounter="https://kiranapos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
