@@ -1864,6 +1864,87 @@
     html.light .cure-card h3    { color: #1A1A1A; }
     html.light .cure-card p     { color: #5A6055; }
     html.light .cure-label      { color: #2E7D32; }
+
+    /* ── CONTRAST FIXES (accessibility, Batch 2) ─────────────────────────────
+       Measured with a WCAG contrast check (4.5:1 for normal text) on the live
+       page; each value below was checked against the background it sits on.
+       Kept in ONE block at the end so it overrides earlier rules and is easy
+       to revert. Deliberately NOT touched: #waitlist (opacity .42 is its
+       intentional "locked until spots fill" look). */
+
+    /* Dark theme: small grey notes were 2.3–2.9:1 */
+    .register-note, .pricing-footnote, .pricing-note, .rush-note,
+    .access-divider { color: rgba(255,255,255,0.6); }
+    /* Popups (always dark navy, both themes) */
+    .form-privacy { color: rgba(255,255,255,0.62); }
+    .modal-sub    { color: rgba(255,255,255,0.66); }
+    .modal-close  { color: rgba(255,255,255,0.65); }
+    .form-label   { color: rgba(255,255,255,0.62); }   /* popup field labels: 4.45 → ~7:1 */
+    /* "Only 25 Spots": white on orange was 2.45:1 → dark text on the same orange */
+    .pricing-hot-badge { color: #1A1200; }
+    /* "Share on WhatsApp": white on WhatsApp green was 1.98:1 → dark text + icon
+       (inline style sets colour/fill, hence !important) */
+    .hero-btns button[onclick="shareOnWhatsApp()"] { color: #052e16 !important; }
+    .hero-btns button[onclick="shareOnWhatsApp()"] svg { fill: #052e16 !important; }
+
+    /* Light theme: pale-on-cream text that was 1.1–1.7:1 */
+    html.light .sc-item h4        { color: #2B2B2B; }
+    html.light .sc-item:hover h4  { color: #8A5A00; }
+    html.light .hero-offer        { color: #8A4B00; }
+    html.light .hero-offer a      { color: #B83400; }
+    html.light .slots-label       { color: #8A5A00; }
+    html.light .badge             { color: #5B2C83; }
+    html.light .apk-badge         { color: #5B2C83; }
+    html.light .register-note, html.light .pricing-footnote,
+    html.light .pricing-note, html.light .rush-note,
+    html.light .access-divider    { color: rgba(26,26,26,0.72); }
+
+    /* Second pass — secondary text still at 2.6–4.4:1.
+       Dark-theme rules are scoped with html:not(.light) so white text can never
+       leak into the light theme (it would vanish on cream). Inline-styled
+       elements are targeted by their data-en text and need !important. */
+    html:not(.light) .hero-sub-en, html:not(.light) .testimonial-attr,
+    html:not(.light) .access-sub, html:not(.light) .pricing-addon-example,
+    html:not(.light) .stat-l, html:not(.light) .pricing-period,
+    html:not(.light) .pricing-per { color: rgba(255,255,255,0.6); }
+    /* Footer text was white @ .35 in dark theme (~3.1:1). The light theme has its
+       own footer rule (white @ .55 on #1A0D05), so only dark is changed. */
+    html:not(.light) footer { color: rgba(255,255,255,0.6); }
+    html:not(.light) div[data-en="Every thread connected. Every number accounted for."],
+    html:not(.light) div[data-en^="Only 25 founding spots"],
+    html:not(.light) p[data-en^="This is a two-way commitment"] { color: rgba(255,255,255,0.6) !important; }
+
+    /* same selector as the existing `html.light .hero div[style*="italic"]` rule
+       (!important, 0.42 alpha = 2.6:1); later in the file, so this one wins */
+    html.light .hero div[style*="italic"] { color: #5A5752 !important; }
+    /* same selector as the existing #why-now rule (!important, 0.45 alpha = 2.8:1);
+       it has an ID in it, so only an identical selector placed later can beat it */
+    html.light #why-now > div[style*="text-align"] > div[style] { color: #55534E !important; }
+    /* same selector as the existing "What You Get" card rule (#C64D00, 4.3:1) */
+    html.light .program-card[style*="97,69,214"] > div[style] { color: #A33F00 !important; }
+    html.light .hero-hook          { color: #A33B38; }
+    html.light .hero-sub-en        { color: #5A5552; }
+    html.light .testimonial-attr   { color: #5E5C55; }
+    html.light .testimonial-attr span { color: #2A6B2E; }
+    html.light .pricing-period, html.light .pricing-per { color: #5E5E5C; }
+    html.light .problem-answer     { color: #236026; }
+    html.light .section-pill, html.light .ap-arrow { color: #9A3E00; }
+    html.light .card-tag           { background: #C2410C; }   /* white text: 3.8 → 5.2:1 */
+    html.light .chip               { color: #A82E08; }
+    /* "register now" pulse: its keyframes animate the colour to #E65100 (~3.2:1),
+       which overrides any static colour — redefine the keyframes darker. */
+    @keyframes cta-pulse-light {
+      0%, 100% {
+        color: #A33C00;
+        text-shadow: 0 0 5px rgba(198,77,0,0.4), 0 0 10px rgba(198,77,0,0.2);
+        transform: scale(1);
+      }
+      50% {
+        color: #B44200;
+        text-shadow: 0 0 12px rgba(230,81,0,0.8), 0 0 24px rgba(230,81,0,0.45), 0 0 40px rgba(255,100,0,0.2);
+        transform: scale(1.05);
+      }
+    }
   </style>
   <script data-goatcounter="https://kiranapos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
