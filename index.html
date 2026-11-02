@@ -2051,6 +2051,23 @@
       box-shadow: none !important;
     }
     html.light .hero-btns button[onclick="shareOnWhatsApp()"] svg { fill: #1F9D55 !important; }
+
+    /* 4. CALMER MOTION. The page ran several endless decorative animations
+          (logo shimmer, spinning logo spark, pulsing "register now" link and
+          share button) that distract and cost battery on cheap phones.
+          Light theme: stopped. Kept on purpose: the hero phone carousel (it is
+          content) and the footer heartbeat. */
+    html.light .logo, html.light .logo-spark, html.light .hero-offer a,
+    html.light .hero-btns button[onclick="shareOnWhatsApp()"] { animation: none !important; }
+    /* Visitors who ask their device for less motion get none of it, in either
+       theme. The carousel would be blank without its animation (the images
+       start at opacity 0), so it shows the first screenshot instead. */
+    @media (prefers-reduced-motion: reduce) {
+      .logo, .logo-spark, .hero-offer a, .heart,
+      .hero-btns button[onclick="shareOnWhatsApp()"] { animation: none !important; }
+      .hero-mockup img { animation: none !important; }
+      .hero-mockup img:first-child { opacity: 1; }
+    }
   </style>
   <script data-goatcounter="https://kiranapos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
