@@ -3107,6 +3107,10 @@ setTimeout(function() {
 
 /* ── THREE.JS SCENE ─────────────────────────────────────────── */
 (function () {
+  // three.js comes from a third-party CDN. If it is slow/blocked/down, skip the
+  // background scene instead of throwing — a throw here would stop the rest of
+  // this script block (access code, demo/waitlist modals, slot counter, scroll).
+  if (typeof THREE === 'undefined') return;
   const canvas   = document.querySelector('#bg');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
