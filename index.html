@@ -2018,6 +2018,39 @@
       #theme-toggle { min-width: 40px; min-height: 40px; }
       .btn-nav { padding: 12px 16px; white-space: nowrap; }
     }
+
+    /* 3. FIRST SCREEN: the buttons used to start ~900px down — below the first
+          screen on every phone AND on a laptop. The hero is now:
+          badge → hook → headline → offer → BUTTONS → 3-step strip → details.
+          Order is visual only (CSS `order`); the HTML order is unchanged for
+          screen readers. Top padding trimmed (the sticky header is separate). */
+    .hero { padding-top: 64px; justify-content: flex-start; }
+    .hero > .badge        { order: 1; }
+    .hero > .hero-hook    { order: 2; }
+    .hero > h1            { order: 3; }
+    .hero > #hero-offer   { order: 4; }
+    .hero > .hero-btns    { order: 5; }
+    .hero > .action-path  { order: 6; }
+    .hero > #hero-sub     { order: 7; }
+    .hero > #hero-p       { order: 8; }
+    .hero > div[style*="italic"] { order: 9; }
+    .hero > .hero-mockup  { order: 10; }
+    /* phones: tighter top, buttons stacked full-width */
+    @media (max-width: 700px) {
+      .hero { padding-top: 28px; }
+      .hero > .hero-btns { flex-direction: column; align-items: stretch;
+                           width: 100%; max-width: 340px; gap: 10px; margin-bottom: 8px; }
+      .hero > .hero-btns > * { justify-content: center; text-align: center; }
+    }
+    /* One clear primary action: in the light theme "Share on WhatsApp" is an
+       outlined secondary button instead of a second solid, glowing one. */
+    html.light .hero-btns button[onclick="shareOnWhatsApp()"] {
+      background: transparent !important;
+      border: 2px solid #1F9D55 !important;
+      color: #0A5C2E !important;
+      box-shadow: none !important;
+    }
+    html.light .hero-btns button[onclick="shareOnWhatsApp()"] svg { fill: #1F9D55 !important; }
   </style>
   <script data-goatcounter="https://kiranapos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -2125,9 +2158,9 @@
          data-en="I Have a Code →" data-hi="मेरे पास कोड है →" data-mr="माझ्याकडे कोड आहे →" data-gu="મારી પાસે કોડ છે →">I Have a Code →</a>
       <button onclick="shareOnWhatsApp()" class="btn-ghost"
               style="border:none;cursor:pointer;background:#25d366;color:#fff;border:2px solid #25d366;display:inline-flex;align-items:center;gap:8px;font-weight:700;box-shadow:0 4px 16px rgba(37,211,102,0.35);animation:wa-pulse 2.2s ease-in-out infinite;"
-              data-en="Share on WhatsApp" data-hi="दोस्त को भेजें" data-mr="मित्राला शेअर करा" data-gu="મિત્રને શેર કરો">
+              type="button">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#fff" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span data-en="Share on WhatsApp" data-hi="दोस्त को भेजें">Share on WhatsApp</span>
+        <span data-en="Share on WhatsApp" data-hi="दोस्त को भेजें" data-mr="मित्राला शेअर करा" data-gu="મિત્રને શેર કરો">Share on WhatsApp</span>
       </button>
     </div>
     <!-- WING CAROUSEL -->
