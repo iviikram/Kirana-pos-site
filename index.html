@@ -1945,6 +1945,15 @@
         transform: scale(1.05);
       }
     }
+
+    /* Text-style button used in the (always dark) registration popup, e.g.
+       "Register another number" under Close on the Request Sent state. */
+    .link-btn {
+      background: none; border: none; cursor: pointer; font-family: inherit;
+      font-size: 0.85rem; padding: 10px 14px; min-height: 40px;
+      color: rgba(255,255,255,0.72); text-decoration: underline;
+    }
+    .link-btn:hover, .link-btn:focus { color: #fff; }
   </style>
   <script data-goatcounter="https://kiranapos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -1958,7 +1967,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<div class="content">
+<div class="content" role="main">
 
   <!-- NAV -->
   <nav>
@@ -2735,7 +2744,7 @@
       </div>
       <div class="access-row">
         <input class="access-input" id="access-code-input" type="text" maxlength="8"
-               placeholder="Enter your code" autocomplete="off" spellcheck="false"
+               placeholder="Enter your code" aria-label="Access code" autocomplete="off" spellcheck="false"
                onkeydown="if(event.key==='Enter') checkAccessCode()" />
         <button class="access-btn" onclick="checkAccessCode()"
                 data-en="Unlock" data-hi="अनलॉक" data-mr="अनलॉक" data-gu="અનલૉક">Unlock</button>
@@ -2903,23 +2912,23 @@
       </div>
       <form id="waitlistForm" onsubmit="submitWaitlistForm(event)">
         <div class="form-group">
-          <label class="form-label" data-en="YOUR NAME" data-hi="आपका नाम">YOUR NAME</label>
+          <label class="form-label" for="w-name" data-en="YOUR NAME" data-hi="आपका नाम">YOUR NAME</label>
           <input class="form-input" id="w-name" type="text" placeholder="Ramesh Kumar" required maxlength="60" />
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="MOBILE NUMBER" data-hi="मोबाइल नंबर">MOBILE NUMBER</label>
+          <label class="form-label" for="w-mobile" data-en="MOBILE NUMBER" data-hi="मोबाइल नंबर">MOBILE NUMBER</label>
           <input class="form-input" id="w-mobile" type="tel" placeholder="9876543210" required maxlength="10" pattern="[0-9]{10}" inputmode="numeric" />
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="SHOP NAME" data-hi="दुकान का नाम">SHOP NAME</label>
+          <label class="form-label" for="w-shop" data-en="SHOP NAME" data-hi="दुकान का नाम">SHOP NAME</label>
           <input class="form-input" id="w-shop" type="text" placeholder="Sharma General Store" required maxlength="80" />
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="CITY / TOWN" data-hi="शहर / कस्बा">CITY / TOWN</label>
+          <label class="form-label" for="w-city" data-en="CITY / TOWN" data-hi="शहर / कस्बा">CITY / TOWN</label>
           <input class="form-input" id="w-city" type="text" placeholder="Lucknow, UP" required maxlength="60" />
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="NUMBER OF STAFF" data-hi="स्टाफ की संख्या">NUMBER OF STAFF</label>
+          <label class="form-label" for="w-staff" data-en="NUMBER OF STAFF" data-hi="स्टाफ की संख्या">NUMBER OF STAFF</label>
           <select class="form-select" id="w-staff" required>
             <option value="">— Select —</option>
             <option value="Just me (owner only)">Just me (owner only)</option>
@@ -2929,7 +2938,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="MONTHLY SHOP SALES" data-hi="दुकान की मासिक बिक्री">MONTHLY SHOP SALES</label>
+          <label class="form-label" for="w-sales" data-en="MONTHLY SHOP SALES" data-hi="दुकान की मासिक बिक्री">MONTHLY SHOP SALES</label>
           <select class="form-select" id="w-sales" required>
             <option value="">— Select —</option>
             <option value="under10k">Under ₹10,000 /month</option>
@@ -2940,7 +2949,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="CURRENT BILLING METHOD" data-hi="अभी बिलिंग कैसे करते हैं">CURRENT BILLING METHOD</label>
+          <label class="form-label" for="w-billing" data-en="CURRENT BILLING METHOD" data-hi="अभी बिलिंग कैसे करते हैं">CURRENT BILLING METHOD</label>
           <select class="form-select" id="w-billing" required>
             <option value="">— Select —</option>
             <option value="notebook">📓 Notebook / Khata</option>
@@ -3014,23 +3023,23 @@
 
       <form id="demoForm" onsubmit="submitDemoForm(event)">
         <div class="form-group">
-          <label class="form-label" data-en="YOUR NAME" data-hi="आपका नाम">YOUR NAME</label>
+          <label class="form-label" for="f-name" data-en="YOUR NAME" data-hi="आपका नाम">YOUR NAME</label>
           <input class="form-input" id="f-name" type="text" placeholder="Ramesh Kumar" required maxlength="60" />
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="MOBILE NUMBER" data-hi="मोबाइल नंबर">MOBILE NUMBER</label>
+          <label class="form-label" for="f-mobile" data-en="MOBILE NUMBER" data-hi="मोबाइल नंबर">MOBILE NUMBER</label>
           <input class="form-input" id="f-mobile" type="tel" placeholder="9876543210" required maxlength="10" pattern="[0-9]{10}" inputmode="numeric" />
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="SHOP NAME" data-hi="दुकान का नाम">SHOP NAME</label>
+          <label class="form-label" for="f-shop" data-en="SHOP NAME" data-hi="दुकान का नाम">SHOP NAME</label>
           <input class="form-input" id="f-shop" type="text" placeholder="Sharma General Store" required maxlength="80" />
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="CITY / TOWN" data-hi="शहर / कस्बा">CITY / TOWN</label>
+          <label class="form-label" for="f-city" data-en="CITY / TOWN" data-hi="शहर / कस्बा">CITY / TOWN</label>
           <input class="form-input" id="f-city" type="text" placeholder="Lucknow, UP" required maxlength="60" />
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="NUMBER OF STAFF" data-hi="स्टाफ की संख्या">NUMBER OF STAFF</label>
+          <label class="form-label" for="f-staff" data-en="NUMBER OF STAFF" data-hi="स्टाफ की संख्या">NUMBER OF STAFF</label>
           <select class="form-select" id="f-staff" required>
             <option value="">— Select —</option>
             <option value="Just me (owner only)">Just me (owner only)</option>
@@ -3040,7 +3049,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="MONTHLY SHOP SALES" data-hi="दुकान की मासिक बिक्री">MONTHLY SHOP SALES</label>
+          <label class="form-label" for="f-sales" data-en="MONTHLY SHOP SALES" data-hi="दुकान की मासिक बिक्री">MONTHLY SHOP SALES</label>
           <select class="form-select" id="f-sales" required>
             <option value="">— Select —</option>
             <option value="under10k">Under ₹10,000 /month</option>
@@ -3051,7 +3060,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" data-en="CURRENT BILLING METHOD" data-hi="अभी बिलिंग कैसे करते हैं">CURRENT BILLING METHOD</label>
+          <label class="form-label" for="f-billing" data-en="CURRENT BILLING METHOD" data-hi="अभी बिलिंग कैसे करते हैं">CURRENT BILLING METHOD</label>
           <select class="form-select" id="f-billing" required>
             <option value="">— Select —</option>
             <option value="notebook">📓 Notebook / Khata</option>
@@ -3087,6 +3096,10 @@
       <button class="btn-primary" onclick="closeDemoModal()"
               style="margin-top:22px;padding:12px 32px;border:none;cursor:pointer;"
               data-en="Close" data-hi="बंद करें" data-mr="बंद करा" data-gu="બંધ કરો">Close</button>
+      <div style="margin-top:12px;">
+        <button type="button" class="link-btn" onclick="registerAnother()"
+                data-en="Register another number" data-hi="दूसरा नंबर रजिस्टर करें" data-mr="दुसरा नंबर नोंदवा" data-gu="બીજો નંબર નોંધાવો">Register another number</button>
+      </div>
     </div>
   </div>
 </div>
@@ -3716,6 +3729,18 @@ function openDemoModal() {
 function closeDemoModal() {
   document.getElementById('demoModal').classList.remove('open');
   document.body.style.overflow = '';
+}
+
+/* A browser that already registered always lands on the "Request Sent!" state
+   (see openDemoModal), with no way back to the form. This lets a visitor return
+   to the form, e.g. to register a second shop or a different number. */
+function registerAnother() {
+  try { localStorage.removeItem('kirana_registered'); } catch (e) {}
+  var form = document.getElementById('demoForm');
+  if (form) form.reset();
+  document.getElementById('modal-success-state').style.display = 'none';
+  document.getElementById('modal-form-state').style.display = '';
+  applyLang(LANG);
 }
 
 /* ── SHARE ON WHATSAPP ──────────────────────────────────────
