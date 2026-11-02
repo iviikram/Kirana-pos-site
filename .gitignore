@@ -1,0 +1,3 @@
+# Release APKs are published as GitHub Release assets, never committed to this
+# public repo (a committed APK bloats history and can't be cleanly removed).
+*.apk
