@@ -3745,7 +3745,9 @@ function submitDemoForm(e) {
     + '🧾 Billing: '       + billing + '\n\n'
     + 'Please activate my free lifetime demo slot. 🙏';
 
-  window.open('https://wa.me/' + OWNER_WA + '?text=' + encodeURIComponent(msg), '_blank');
+  // api.whatsapp.com/send, NOT wa.me: wa.me's redirect turns the emoji in this
+  // message into U+FFFD ("�") on desktop browsers (see shareOnWhatsApp()).
+  window.open('https://api.whatsapp.com/send?phone=' + OWNER_WA + '&text=' + encodeURIComponent(msg), '_blank');
 
   document.getElementById('modal-form-state').style.display = 'none';
   document.getElementById('modal-success-state').style.display = 'block';
