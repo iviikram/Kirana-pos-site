@@ -1110,8 +1110,27 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
-      nav { padding: 14px 20px; }
+      /* Compact phone header: logo + language icon + theme toggle + Download
+         must all fit in one row (they overflowed to 440px on a 390px screen
+         and clipped the Download button). */
+      nav { padding: 12px 14px; }
+      .nav-links { gap: 8px; }
       .nav-links a:not(.btn-nav):not(#lang-toggle) { display: none; }
+      .logo { font-size: 1.1rem; white-space: nowrap; }
+      .lang-trigger { padding: 9px 10px; min-height: 40px; }
+      .lang-trigger #lang-label, .lang-trigger .lang-arrow { display: none; }
+      #theme-toggle { min-width: 40px; min-height: 40px; }
+      .btn-nav { padding: 12px 14px; white-space: nowrap; }
+      /* a.wa-float (not .wa-float): the base .wa-float rule is defined later in
+         the file and would otherwise win at equal specificity. */
+      a.wa-float { width: 48px; height: 48px; bottom: 16px; right: 14px; }
+      /* The fanned hero phone mockups bleed past the screen edge on purpose;
+         clip them at the (full-width) hero section so the page can't be dragged
+         sideways. Do NOT put overflow on <html>: that stops body's overflow-x
+         from reaching the viewport and breaks the sticky nav. */
+      .hero { overflow-x: clip; }
+      /* Let the access-code input shrink so its button stays on screen. */
+      .access-input { min-width: 0; }
       .features { padding: 72px 20px; border-radius: 0; }
       .problem, .how, .cta, .testimonial, .rush, .pricing-section { padding: 72px 20px; }
       .pricing-demo, .pricing-right { max-width: 100%; }
@@ -1123,6 +1142,13 @@
       .step-connector { display: none; }
       .testimonial-card { padding: 44px 28px; }
       .quote-mark { left: 20px; }
+    }
+    /* Very small phones (320–360px): tighten the header a little more. */
+    @media (max-width: 360px) {
+      nav { padding: 10px 10px; }
+      .nav-links { gap: 6px; }
+      .logo { font-size: 1rem; }
+      .btn-nav { padding: 12px 10px; font-size: 0.8rem !important; }
     }
     /* ── PROGRAM TERMS ── */
     .program-grid {
@@ -1863,7 +1889,7 @@
       <a href="#register"  data-en="Register"        data-hi="रजिस्टर"     data-mr="नोंदणी"         data-gu="નોંધણી">Register</a>
       <a href="#how"       data-en="How it works"    data-hi="कैसे काम करे" data-mr="कसे काम करते"   data-gu="કેવી રીતે કામ કરે">How it works</a>
       <div class="lang-picker" id="lang-picker">
-        <button class="lang-trigger" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false">
+        <button class="lang-trigger" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
           🌐 <span id="lang-label">English</span>
           <span class="lang-arrow">▼</span>
         </button>
