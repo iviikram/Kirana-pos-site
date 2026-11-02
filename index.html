@@ -2960,9 +2960,9 @@
         </button>
 
         <div class="form-privacy"
-             data-en="🔒 Your details go directly to the founder via WhatsApp. Nothing stored on any server."
-             data-hi="🔒 आपकी जानकारी सीधे फाउंडर को WhatsApp पर जाती है। किसी सर्वर पर सेव नहीं होती।">
-          🔒 Your details are sent to the founder via WhatsApp and saved securely.
+             data-en="🔒 Your details are sent to the founder via WhatsApp and saved in our registration sheet (Google Sheets). We use them only to review your request and contact you."
+             data-hi="🔒 आपकी जानकारी WhatsApp पर फाउंडर को भेजी जाती है और हमारी रजिस्ट्रेशन शीट (Google Sheets) में सेव होती है। हम इसका उपयोग सिर्फ़ आपकी रिक्वेस्ट देखने और आपसे संपर्क करने के लिए करते हैं।">
+          🔒 Your details are sent to the founder via WhatsApp and saved in our registration sheet (Google Sheets). We use them only to review your request and contact you.
         </div>
       </form>
     </div>
@@ -3633,7 +3633,10 @@ function shareOnWhatsApp() {
   var text = '🙏 *KiranaPOS* — ' + m.about
     + '\n\n🌐 ' + m.site + ' ' + SHARE_SITE_URL
     + '\n🎬 ' + m.ad + ' ' + SHARE_AD_URL;
-  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  // api.whatsapp.com/send, NOT wa.me: wa.me's server-side redirect replaces emoji
+  // with U+FFFD ("�") on desktop browsers; the api.whatsapp.com URL keeps them intact.
+  // (It is also WhatsApp's official universal link, so phones open the app with it too.)
+  window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
 }
 
 function handleModalBackdrop(e) {
