@@ -1958,6 +1958,31 @@
       color: rgba(255,255,255,0.72); text-decoration: underline;
     }
     .link-btn:hover, .link-btn:focus { color: #fff; }
+
+    /* ═══ LIGHT THEME REFINEMENT ("Option A") ═══════════════════════════════
+       Light theme only (html.light) — the dark theme is untouched.
+       1. PALETTE: the warm cream / saffron / green theme still had purple left
+          over from the dark theme (header Download, badges, stat numbers,
+          prices, FAQ). Unified to saffron + green. */
+    html.light .btn-nav, html.light .access-btn {
+      background: linear-gradient(135deg, #A33C00, #C2410C);
+      box-shadow: 0 4px 18px rgba(194,65,12,0.30);
+    }
+    html.light .btn-nav:hover { box-shadow: 0 6px 24px rgba(194,65,12,0.45) !important; }
+    html.light .badge, html.light .apk-badge {
+      background: rgba(198,77,0,0.10);
+      border-color: rgba(198,77,0,0.28);
+      color: #913900;
+    }
+    html.light .problem-answer { background: rgba(56,142,60,0.08); border-color: rgba(56,142,60,0.30); }
+    html.light .faq-icon { color: #C2410C; }
+    html.light .faq-card:hover { border-color: rgba(194,65,12,0.35); }
+    html.light .faq-card.open  { background: rgba(194,65,12,0.06); border-color: rgba(194,65,12,0.30); }
+    /* stat numbers + prices are gradient text (transparent fill), so `color`
+       has no effect — the gradient itself must change. The old price gradient
+       (#FFD54F→#FF9933, pale yellow) was ~1.5:1 on the white pricing cards. */
+    html.light .stat-n        { background-image: linear-gradient(135deg, #C2410C, #2E7D32); }
+    html.light .pricing-price { background-image: linear-gradient(135deg, #A33C00, #C2410C); }
   </style>
   <script data-goatcounter="https://kiranapos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
