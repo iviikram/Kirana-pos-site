@@ -2068,6 +2068,25 @@
       .hero-mockup img { animation: none !important; }
       .hero-mockup img:first-child { opacity: 1; }
     }
+
+    /* 5. ICONS (light theme). The card icons are emoji of different sizes and
+          colours floating loose on the cards. They now sit in one uniform
+          saffron-tinted tile. NOTE: this is a consistency fix, not a custom icon
+          set — the emoji glyphs still look different per device. (Tinting the
+          emoji with a CSS colour filter was tried and rejected: icons became
+          faint.) A real SVG icon set would be a separate step. */
+    html.light .card-icon, html.light .pain-icon, html.light .cure-icon,
+    html.light div[style*="font-size:2rem;margin-bottom:12px"] {
+      display: inline-flex !important; align-items: center; justify-content: center;
+      width: 56px; height: 56px; border-radius: 16px; margin-bottom: 14px !important;
+      font-size: 1.7rem !important; line-height: 1;
+      background: rgba(194,65,12,0.10);
+    }
+    html.light .rb-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 13px; flex-shrink: 0;
+      background: rgba(194,65,12,0.10);
+    }
   </style>
   <script data-goatcounter="https://kiranapos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
