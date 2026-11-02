@@ -146,6 +146,7 @@
       transition: transform 0.2s;
     }
     .lang-picker.open .lang-arrow { transform: rotate(180deg); }
+    .lang-short { display: none; }   /* phones only, see the max-width:700px block */
 
     .lang-menu {
       display: none;
@@ -1118,7 +1119,10 @@
       .nav-links a:not(.btn-nav):not(#lang-toggle) { display: none; }
       .logo { font-size: 1.1rem; white-space: nowrap; }
       .lang-trigger { padding: 9px 10px; min-height: 40px; }
-      .lang-trigger #lang-label, .lang-trigger .lang-arrow { display: none; }
+      /* phones: a short visible code (EN / हिं / मरा / ગુજ) instead of globe +
+         full name, so the language switch is findable and still fits */
+      .lang-trigger .lang-globe, .lang-trigger #lang-label, .lang-trigger .lang-arrow { display: none; }
+      .lang-trigger .lang-short { display: inline; font-weight: 700; }
       #theme-toggle { min-width: 40px; min-height: 40px; }
       .btn-nav { padding: 12px 14px; white-space: nowrap; }
       /* a.wa-float (not .wa-float): the base .wa-float rule is defined later in
@@ -1980,7 +1984,7 @@
       <a href="#how"       data-en="How it works"    data-hi="कैसे काम करे" data-mr="कसे काम करते"   data-gu="કેવી રીતે કામ કરે">How it works</a>
       <div class="lang-picker" id="lang-picker">
         <button class="lang-trigger" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
-          🌐 <span id="lang-label">English</span>
+          <span class="lang-globe">🌐</span> <span id="lang-label">English</span><span id="lang-short" class="lang-short">EN</span>
           <span class="lang-arrow">▼</span>
         </button>
         <div class="lang-menu" role="listbox">
@@ -3108,9 +3112,29 @@
 <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
 <script>
 /* ── LANGUAGE ENGINE ───────────────────────────────────────── */
-var LANG = localStorage.getItem('kpos-lang') || 'en';
+/* First visit: use the visitor's phone language if we have it (Hindi, Marathi,
+   Gujarati); otherwise English. The first supported language in the visitor's
+   own preference order wins. applyLang() saves the language once it has run, so
+   this only decides the very first page view — afterwards the saved choice (or
+   the visitor's own pick from the menu) is used. */
+function detectLang(prefs) {
+  for (var i = 0; i < prefs.length; i++) {
+    var p = String(prefs[i] || '').toLowerCase().split('-')[0];
+    if (p === 'en' || p === 'hi' || p === 'mr' || p === 'gu') return p;
+  }
+  return 'en';
+}
+var LANG = (function () {
+  var saved = null;
+  try { saved = localStorage.getItem('kpos-lang'); } catch (e) {}
+  if (saved) return saved;
+  var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language];
+  return detectLang(prefs);
+})();
 
 var LANG_LABELS = { en: 'English', hi: 'हिंदी', mr: 'मराठी', gu: 'ગુજરાતી' };
+/* short codes for the phone header, where the full name does not fit */
+var LANG_SHORT  = { en: 'EN', hi: 'हिं', mr: 'मरा', gu: 'ગુજ' };
 
 function toggleFaq(card) {
   var isOpen = card.classList.contains('open');
@@ -3143,11 +3167,15 @@ document.addEventListener('click', function() {
 
 function applyLang(lang) {
   LANG = lang;
-  localStorage.setItem('kpos-lang', lang);
+  try { localStorage.setItem('kpos-lang', lang); } catch (e) {}  /* storage can be blocked */
 
   /* sync custom picker label + active state */
   var label = document.getElementById('lang-label');
   if (label) label.textContent = LANG_LABELS[lang] || lang;
+  var shortEl = document.getElementById('lang-short');
+  if (shortEl) shortEl.textContent = LANG_SHORT[lang] || String(lang).toUpperCase();
+  var trig = document.querySelector('.lang-trigger');
+  if (trig) trig.setAttribute('aria-label', 'Language: ' + (LANG_LABELS[lang] || lang));
   document.querySelectorAll('.lang-opt').forEach(function(opt) {
     opt.classList.toggle('active', opt.getAttribute('data-val') === lang);
   });
